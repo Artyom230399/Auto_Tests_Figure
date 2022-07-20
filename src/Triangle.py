@@ -12,9 +12,10 @@ class Triangle:
     def triangle_check(self):
         if (self.a + self.b) > self.c and (self.a + self.c) > self.b and (
                 self.c + self.b) > self.a and self.a > 0 and self.b > 0 and self.c > 0:
-            pass
+            result = "true"
         else:
-            print("raise ValueError")
+            result = "raise ValueError"
+            print(result)
             quit()
 
     #   Функция расчета периметра
@@ -31,7 +32,7 @@ class Triangle:
         return s_tr
 
 
-triangle = Triangle(a=5, b=8, c=111)
+triangle = Triangle(a=5, b=8, c=11)
 triangle_name = FigureName(name="Triangle")
 
 triangle.triangle_check()  # Проверка треугольника на существование
