@@ -2,28 +2,36 @@ from src.Figure import Figure
 
 
 class Rectangle(Figure):
-    name = "Rectangle"
+    NAME = "Rectangle"
 
     def __init__(self, side_a, side_b):
-        if side_a <= 0 or side_b <= 0:
-            print("raise ValueError")
-            quit()
         self.side_a = side_a
         self.side_b = side_b
 
     #   Функция расчета периметра
     @property
     def perimeter(self):
-        return (self.side_b + self.side_a) * 2
+        if self.side_a <= 0 or self.side_b <= 0:
+            return "raise ValueError"
+        else:
+            return (self.side_b + self.side_a) * 2
 
     #   Функция расчета площади
     @property
     def area(self):
-        return self.side_b * self.side_a
+        if self.side_a <= 0 or self.side_b <= 0:
+            return "raise ValueError"
+        else:
+            return self.side_b * self.side_a
 
+    def add_area(self, figure_2):
+        if self.area == "raise ValueError" or figure_2 == "raise ValueError":
+            return "raise ValueError"
+        else:
+            return self.area + figure_2.area
 
-rectangle = Rectangle(side_a=4, side_b=5)
-
-print(Rectangle.name)  # Вывод имени фигуры
-print(rectangle.perimeter)
-print(rectangle.area)
+# rectangle = Rectangle(side_a=4, side_b=5)
+#
+# print(Rectangle.NAME)
+# print(rectangle.perimeter)
+# print(rectangle.area)

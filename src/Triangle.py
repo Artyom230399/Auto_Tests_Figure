@@ -3,12 +3,9 @@ import math
 
 
 class Triangle(Figure):
-    name = "Triangle"
+    NAME = "Triangle"
 
     def __init__(self, a, b, c):
-        if (a + b) < c or (a + c) < b or (c + b) < a or a < 0 or b < 0 or c < 0:
-            print('raise ValueError')
-            quit()
         self.a = a
         self.b = b
         self.c = c
@@ -16,17 +13,30 @@ class Triangle(Figure):
     #   Функция расчета периметра
     @property
     def perimeter(self):
-        return self.a + self.b + self.c
+        if (self.a + self.b) < self.c or (self.a + self.c) < self.b or (
+                self.c + self.b) < self.a or self.a <= 0 or self.b <= 0 or self.c <= 0:
+            return "raise ValueError"
+        else:
+            return self.a + self.b + self.c
 
     #   Функция расчета площади
     @property
     def area(self):
-        p_tr_2 = (self.a + self.b + self.c) / 2
-        return math.sqrt(p_tr_2 * (p_tr_2 - self.a) * (p_tr_2 - self.b) * (p_tr_2 - self.c))
+        if (self.a + self.b) < self.c or (self.a + self.c) < self.b or (
+                self.c + self.b) < self.a or self.a <= 0 or self.b <= 0 or self.c <= 0:
+            return "raise ValueError"
+        else:
+            p_tr_2 = (self.a + self.b + self.c) / 2
+            return math.sqrt(p_tr_2 * (p_tr_2 - self.a) * (p_tr_2 - self.b) * (p_tr_2 - self.c))
 
+    def add_area(self, figure_2):
+        if self.area == "raise ValueError" or figure_2 == "raise ValueError":
+            return "raise ValueError"
+        else:
+            return self.area + figure_2.area
 
-triangle = Triangle(a=5, b=8, c=11)
-
-print(triangle.name)  # Вывод имени фигуры
-print(triangle.perimeter)
-print(triangle.area)
+# triangle = Triangle(a=5, b=8, c=11)
+#
+# print(triangle.NAME)
+# print(triangle.perimeter)
+# print(triangle.area)
