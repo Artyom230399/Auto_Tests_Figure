@@ -1,41 +1,32 @@
-from Figure import FigureName
+from src.Figure import Figure
 import math
 
 
-class Triangle:
+class Triangle(Figure):
+    name = "Triangle"
 
     def __init__(self, a, b, c):
+        if (a + b) < c or (a + c) < b or (c + b) < a or a < 0 or b < 0 or c < 0:
+            print('raise ValueError')
+            quit()
         self.a = a
         self.b = b
         self.c = c
 
-    def triangle_check(self):
-        if (self.a + self.b) > self.c and (self.a + self.c) > self.b and (
-                self.c + self.b) > self.a and self.a > 0 and self.b > 0 and self.c > 0:
-            result = "true"
-        else:
-            result = "raise ValueError"
-            print(result)
-            quit()
-
     #   Функция расчета периметра
-    def perimeter_triangle(self):
-        p_tr = self.a + self.b + self.c
-        print("Perimeter =", p_tr)
-        return p_tr
+    @property
+    def perimeter(self):
+        return self.a + self.b + self.c
 
     #   Функция расчета площади
-    def area_triangle(self):
+    @property
+    def area(self):
         p_tr_2 = (self.a + self.b + self.c) / 2
-        s_tr = math.sqrt(p_tr_2 * (p_tr_2 - self.a) * (p_tr_2 - self.b) * (p_tr_2 - self.c))
-        print("Area =", s_tr)
-        return s_tr
+        return math.sqrt(p_tr_2 * (p_tr_2 - self.a) * (p_tr_2 - self.b) * (p_tr_2 - self.c))
 
 
 triangle = Triangle(a=5, b=8, c=11)
-triangle_name = FigureName(name="Triangle")
 
-triangle.triangle_check()  # Проверка треугольника на существование
-triangle_name.name_figure()  # Вывод имени фигуры
-triangle.perimeter_triangle()  # Расчет периметра
-triangle.area_triangle()  # Расчет площади
+print(triangle.name)  # Вывод имени фигуры
+print(triangle.perimeter)
+print(triangle.area)

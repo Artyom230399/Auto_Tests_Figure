@@ -1,27 +1,28 @@
-from Figure import FigureName
+from src.Figure import Figure
 
 
-class Circle:
+class Circle(Figure):
+    name = "Circle"
 
     def __init__(self, r):
+        if r <= 0:
+            print("raise ValueError")
+            quit()
         self.r = r
 
     #   Функция расчета периметра
-    def perimeter_circle(self):
-        p_cir = 6.28 * self.r
-        print(p_cir)
-        return p_cir
+    @property
+    def perimeter(self):
+        return 6.28 * self.r
 
     #   Функция расчета площади
-    def area_circle(self):
-        s_cir = 3.14 * self.r ** 2
-        print(s_cir)
-        return s_cir
+    @property
+    def area(self):
+        return 3.14 * self.r ** 2
 
 
 circle = Circle(r=6)
-circle_name = FigureName(name="Circle")
 
-circle_name.name_figure()
-circle.perimeter_circle()
-circle.area_circle()
+print(Circle.name)  # Вывод имени фигуры
+print(circle.perimeter)
+print(circle.area)

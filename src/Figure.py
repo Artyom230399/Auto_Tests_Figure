@@ -1,7 +1,10 @@
-class FigureName:
+class Figure:
+    name = None
 
-    def __init__(self, name):
-        self.name = name
+    @property
+    def perimeter(self):
+        return self.perimeter
 
-    def name_figure(self):
-        print("Figure -", self.name)
+    @property
+    def area(self):
+        return self.area
