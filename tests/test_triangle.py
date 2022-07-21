@@ -1,4 +1,5 @@
 from src.Triangle import Triangle
+from src.Square import Square
 import pytest
 
 
@@ -30,3 +31,18 @@ def test_area(input_side, exp):
 def test_perimeter(input_side, exp):
     triangle = Triangle(a=input_side[0], b=input_side[1], c=input_side[2])
     assert triangle.perimeter == exp
+
+
+#   Площадь квадрата + площадь треугольника
+@pytest.mark.parametrize("input, input2, exp", [
+    (2, (2, 4, 5), 7.799671038392666),
+    (5, (1, -2, 2), 'raise ValueError'),
+    (5, (1, 2, -2), 'raise ValueError'),
+    (5, (1, 0, 0), 'raise ValueError'),
+    (5, (0, 2, 2), 'raise ValueError'),
+    (1, (-1, 2, 2), "raise ValueError")
+])
+def test_add_area_3(input, input2, exp):
+    square = Square(input)
+    triangle = Triangle(a=input2[0], b=input2[1], c=input2[2])
+    assert triangle.add_area(figure_2=square) == exp

@@ -1,4 +1,5 @@
 from src.Rectangle import Rectangle
+from src.Square import Square
 import pytest
 
 
@@ -30,3 +31,15 @@ def test_area(input_side, exp):
 def test_perimeter(input_side, exp):
     rectangle = Rectangle(side_a=input_side[0], side_b=input_side[1])
     assert rectangle.perimeter == exp
+
+
+#   Площадь квадрата + площадь прямоугольника
+@pytest.mark.parametrize("input, input2, exp", [
+    (2, (2, 4), 12),
+    (2, (0, 2), 'raise ValueError'),
+    (5, (-1, 0), "raise ValueError")
+])
+def test_add_area_2(input, input2, exp):
+    square = Square(input)
+    rectangle = Rectangle(side_a=input2[0], side_b=input2[1])
+    assert rectangle.add_area(figure_2=square) == exp
